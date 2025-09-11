@@ -1,5 +1,4 @@
 // --- DADOS MOCKADOS (SIMULANDO UM BANCO DE DADOS) ---
-// Você pode alterar, adicionar ou remover jogos aqui.
 const gamesData = [
     {
         id: 1,

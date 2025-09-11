@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GameSHub - Suas Estatísticas de Jogos</title>
-    <!-- Tailwind CSS CDN para estilização rápida e moderna -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts para uma tipografia mais agradável -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Ícones (Feather Icons) -->
     <script src="https://unpkg.com/feather-icons"></script>
-    <!-- Link para o seu arquivo CSS externo na pasta 'css' -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="min-h-screen">
 
-    <!-- Cabeçalho e Navegação -->
+   
     <header class="steam-bg-medium shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold steam-text-accent">
@@ -33,7 +29,7 @@
                 <i data-feather="menu" class="h-6 w-6"></i>
             </button>
         </nav>
-        <!-- Menu Mobile -->
+       
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
             <a href="#home" class="nav-link block py-2 hover:steam-text-accent">Início</a>
             <a href="#games" class="nav-link block py-2 hover:steam-text-accent">Jogos Populares</a>
@@ -42,7 +38,6 @@
     </header>
 
     <main class="container mx-auto p-6 md:p-8">
-        <!-- Página Inicial -->
         <section id="home" class="page active">
             <div class="text-center rounded-lg p-12" style="background-image: linear-gradient(rgba(42, 71, 94, 0.9), rgba(27, 40, 56, 0.95)), url('images/initialwallpaper.jpg'); background-size: cover; background-position: center;">
                 <h1 class="text-4xl md:text-6xl font-bold steam-text-accent mb-4">Bem-vindo ao GameSHub!</h1>
@@ -73,7 +68,6 @@
             </div>
         </section>
 
-        <!-- Página de Conteúdo (Jogos) -->
         <section id="games" class="page">
             <h1 class="text-3xl md:text-4xl font-bold mb-8 steam-text-accent">Jogos Mais Populares</h1>
             <div class="overflow-x-auto steam-bg-medium rounded-lg shadow-xl">
@@ -88,17 +82,15 @@
                         </tr>
                     </thead>
                     <tbody id="games-table-body">
-                        <!-- Linhas da tabela serão inseridas aqui via JavaScript -->
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- Página de Contato -->
+       
         <section id="contact" class="page">
             <h1 class="text-3xl md:text-4xl font-bold mb-8 steam-text-accent">Entre em Contato</h1>
             <div class="grid md:grid-cols-2 gap-12">
-                <!-- Informações de Contato -->
                 <div class="steam-bg-medium p-8 rounded-lg">
                     <h2 class="text-2xl font-semibold mb-6">Nossas Informações</h2>
                     <div class="space-y-4">
@@ -117,7 +109,6 @@
                     </div>
                 </div>
 
-                <!-- Formulário de Contato -->
                 <div>
                     <form id="contact-form" class="space-y-4">
                         <div>
@@ -148,18 +139,18 @@
         </section>
     </main>
 
-    <!-- Modal para Detalhes do Jogo -->
+    
     <div id="game-modal" class="fixed inset-0 z-50 hidden items-center justify-center">
         <div id="game-modal-backdrop" class="absolute inset-0 bg-black bg-opacity-75"></div>
         <div id="game-modal-content" class="relative steam-bg-medium rounded-lg shadow-xl w-11/12 md:max-w-2xl max-h-[90vh] overflow-y-auto p-8">
             <button id="close-modal-button" class="absolute top-4 right-4 text-gray-400 hover:text-white">
                 <i data-feather="x" class="h-8 w-8"></i>
             </button>
-            <!-- Conteúdo do modal será inserido aqui via JavaScript -->
+            
         </div>
     </div>
     
-    <!-- Rodapé -->
+    
     <footer class="steam-bg-medium mt-12 py-6 border-t steam-border">
         <div class="container mx-auto text-center text-gray-400">
             <p>&copy; 2025 GameSHub. Todos os direitos reservados.</p>
@@ -167,7 +158,7 @@
         </div>
     </footer>
 
-    <!-- Link para o seu arquivo JavaScript externo na pasta 'js' -->
+   
     <script src="js/script.js"></script>
 </body>
 </html>

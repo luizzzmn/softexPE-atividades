@@ -1,8 +1,7 @@
-/* Estilos customizados inspirados na paleta do Steam */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #1b2838; /* Azul escuro do Steam */
-    color: #c7d5e0; /* Cor de texto clara */
+    background-color: #1b2838; 
+    color: #c7d5e0; 
 }
 :root {
     --steam-blue-dark: #1b2838;
@@ -16,7 +15,7 @@ body {
 .steam-text-accent { color: var(--steam-blue-light); }
 .steam-border { border-color: var(--steam-blue-medium); }
 
-/* Esconde as páginas que não estão ativas */
+
 .page {
     display: none;
 }
@@ -24,7 +23,7 @@ body {
     display: block;
 }
 
-/* Animação suave para o modal */
+
 #game-modal {
     transition: opacity 0.3s ease;
 }
@@ -32,7 +31,7 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* Estilização da barra de rolagem */
+
 ::-webkit-scrollbar {
     width: 8px;
 }
