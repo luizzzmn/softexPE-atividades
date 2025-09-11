@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameSHub - Suas Estatísticas de Jogos</title>
+    <!-- Tailwind CSS CDN para estilização rápida e moderna -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts para uma tipografia mais agradável -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Ícones (Feather Icons) -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    <!-- Link para o seu arquivo CSS externo na pasta 'css' -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen">
+
+    <!-- Cabeçalho e Navegação -->
+    <header class="steam-bg-medium shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold steam-text-accent">
+                <i data-feather="bar-chart-2" class="inline-block -mt-1"></i>
+                GameSHub
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="nav-link text-lg hover:steam-text-accent transition duration-300">Início</a>
+                <a href="#games" class="nav-link text-lg hover:steam-text-accent transition duration-300">Jogos Populares</a>
+                <a href="#contact" class="nav-link text-lg hover:steam-text-accent transition duration-300">Contato</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden">
+                <i data-feather="menu" class="h-6 w-6"></i>
+            </button>
+        </nav>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#home" class="nav-link block py-2 hover:steam-text-accent">Início</a>
+            <a href="#games" class="nav-link block py-2 hover:steam-text-accent">Jogos Populares</a>
+            <a href="#contact" class="nav-link block py-2 hover:steam-text-accent">Contato</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 md:p-8">
+        <!-- Página Inicial -->
+        <section id="home" class="page active">
+            <div class="text-center rounded-lg p-12" style="background-image: linear-gradient(rgba(42, 71, 94, 0.9), rgba(27, 40, 56, 0.95)), url('images/initialwallpaper.jpg'); background-size: cover; background-position: center;">
+                <h1 class="text-4xl md:text-6xl font-bold steam-text-accent mb-4">Bem-vindo ao GameSHub!</h1>
+                <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">Sua fonte definitiva para estatísticas, preços e informações sobre os jogos mais populares do momento. Explore dados em tempo real e descubra novos títulos.</p>
+                <button onclick="document.querySelector('a[href=\'#games\']').click()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 transform hover:scale-105">
+                    Ver Jogos em Destaque
+                </button>
+            </div>
+            <div class="mt-12">
+                 <h2 class="text-3xl font-bold text-center mb-8 steam-text-accent">Recursos Principais</h2>
+                 <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="steam-bg-medium p-6 rounded-lg">
+                        <i data-feather="users" class="mx-auto h-12 w-12 steam-text-accent mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Jogadores Online</h3>
+                        <p>Acompanhe o número de jogadores ativos em tempo real.</p>
+                    </div>
+                     <div class="steam-bg-medium p-6 rounded-lg">
+                        <i data-feather="dollar-sign" class="mx-auto h-12 w-12 steam-text-accent mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Histórico de Preços</h3>
+                        <p>Veja os melhores preços e promoções disponíveis.</p>
+                    </div>
+                     <div class="steam-bg-medium p-6 rounded-lg">
+                        <i data-feather="trending-up" class="mx-auto h-12 w-12 steam-text-accent mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Tendências do Mercado</h3>
+                        <p>Descubra quais jogos estão ganhando popularidade.</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Página de Conteúdo (Jogos) -->
+        <section id="games" class="page">
+            <h1 class="text-3xl md:text-4xl font-bold mb-8 steam-text-accent">Jogos Mais Populares</h1>
+            <div class="overflow-x-auto steam-bg-medium rounded-lg shadow-xl">
+                <table class="w-full text-left">
+                    <thead class="border-b-2 steam-border">
+                        <tr>
+                            <th class="p-4">#</th>
+                            <th class="p-4">Jogo</th>
+                            <th class="p-4 text-right">Preço</th>
+                            <th class="p-4 text-right">Jogadores Online</th>
+                            <th class="p-4 text-right">Pico de Hoje</th>
+                        </tr>
+                    </thead>
+                    <tbody id="games-table-body">
+                        <!-- Linhas da tabela serão inseridas aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Página de Contato -->
+        <section id="contact" class="page">
+            <h1 class="text-3xl md:text-4xl font-bold mb-8 steam-text-accent">Entre em Contato</h1>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Informações de Contato -->
+                <div class="steam-bg-medium p-8 rounded-lg">
+                    <h2 class="text-2xl font-semibold mb-6">Nossas Informações</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i data-feather="map-pin" class="h-6 w-6 mr-4 steam-text-accent"></i>
+                            <span>Rua Fictícia, 123 - Cidade Exemplo, BR</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="mail" class="h-6 w-6 mr-4 steam-text-accent"></i>
+                            <span>contato@gamestatshub.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i data-feather="phone" class="h-6 w-6 mr-4 steam-text-accent"></i>
+                            <span>+55 (00) 12345-6789</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulário de Contato -->
+                <div>
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label for="name" class="block mb-2 font-medium">Seu Nome</label>
+                            <input type="text" id="name" name="name" required class="w-full p-3 rounded bg-gray-800 border steam-border focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2 font-medium">Seu E-mail</label>
+                            <input type="email" id="email" name="email" required class="w-full p-3 rounded bg-gray-800 border steam-border focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="subject" class="block mb-2 font-medium">Assunto</label>
+                            <input type="text" id="subject" name="subject" required class="w-full p-3 rounded bg-gray-800 border steam-border focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block mb-2 font-medium">Mensagem</label>
+                            <textarea id="message" name="message" rows="5" required class="w-full p-3 rounded bg-gray-800 border steam-border focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                    <div id="form-success-message" class="hidden mt-4 p-4 bg-green-800 text-green-100 rounded-lg text-center">
+                        Sua mensagem foi enviada com sucesso!
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para Detalhes do Jogo -->
+    <div id="game-modal" class="fixed inset-0 z-50 hidden items-center justify-center">
+        <div id="game-modal-backdrop" class="absolute inset-0 bg-black bg-opacity-75"></div>
+        <div id="game-modal-content" class="relative steam-bg-medium rounded-lg shadow-xl w-11/12 md:max-w-2xl max-h-[90vh] overflow-y-auto p-8">
+            <button id="close-modal-button" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i data-feather="x" class="h-8 w-8"></i>
+            </button>
+            <!-- Conteúdo do modal será inserido aqui via JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Rodapé -->
+    <footer class="steam-bg-medium mt-12 py-6 border-t steam-border">
+        <div class="container mx-auto text-center text-gray-400">
+            <p>&copy; 2025 GameSHub. Todos os direitos reservados.</p>
+            <p>Projeto de exemplo para fins educacionais.</p>
+        </div>
+    </footer>
+
+    <!-- Link para o seu arquivo JavaScript externo na pasta 'js' -->
+    <script src="js/script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,48 @@
+/* Estilos customizados inspirados na paleta do Steam */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #1b2838; /* Azul escuro do Steam */
+    color: #c7d5e0; /* Cor de texto clara */
+}
+:root {
+    --steam-blue-dark: #1b2838;
+    --steam-blue-medium: #2a475e;
+    --steam-blue-light: #66c0f4;
+    --steam-text-light: #c7d5e0;
+    --steam-text-dark: #1e1e1e;
+}
+.steam-bg-dark { background-color: var(--steam-blue-dark); }
+.steam-bg-medium { background-color: var(--steam-blue-medium); }
+.steam-text-accent { color: var(--steam-blue-light); }
+.steam-border { border-color: var(--steam-blue-medium); }
+
+/* Esconde as páginas que não estão ativas */
+.page {
+    display: none;
+}
+.page.active {
+    display: block;
+}
+
+/* Animação suave para o modal */
+#game-modal {
+    transition: opacity 0.3s ease;
+}
+#game-modal-backdrop {
+    transition: opacity 0.3s ease;
+}
+
+/* Estilização da barra de rolagem */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #2a475e;
+}
+::-webkit-scrollbar-thumb {
+    background: #66c0f4;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #8fd3f8;
+}
