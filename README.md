@@ -102,7 +102,7 @@ O site será aberto automaticamente no seu navegador padrão.
 ###  Estrutura de Pastas
 O projeto está organizado da seguinte forma para manter o código limpo e de fácil manutenção:
 ```
-/GameStats-Hub/
+/GameSHub/
 |
 |-- index.html          # Arquivo principal da estrutura
 |-- /css/
