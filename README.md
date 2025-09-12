@@ -87,6 +87,8 @@ Para visualizar e interagir com este projeto em sua máquina local, é recomenda
 
 A maneira mais simples de fazer isso é com a extensão Live Server no Visual Studio Code.
 
+Ou ainda acesse de forma online: https://softex-pe-atividades-uupf.vercel.app
+
 Clone ou baixe este repositório:
 
 git clone [https://github.com/seu-usuario/seu-repositorio.git](https://github.com/seu-usuario/seu-repositorio.git)
