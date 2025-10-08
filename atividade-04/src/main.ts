@@ -1,52 +1,81 @@
-import { Task } from './Task.js';
-import { taskManager } from './TaskManager.js';
+import { Game } from './Game.js';
+import { gameManager } from './GameManager.js';
 
-// Elementos do DOM
-const taskInput = document.getElementById('task-input') as HTMLInputElement;
-const addTaskBtn = document.getElementById('add-task-btn') as HTMLButtonElement;
-const taskList = document.getElementById('task-list') as HTMLUListElement;
+// Elementos do DOM (IDs esperados no HTML)
+const titleInput = document.getElementById('game-title-input') as HTMLInputElement;
+const genreInput = document.getElementById('game-genre-input') as HTMLInputElement;
+const platformInput = document.getElementById('game-platform-input') as HTMLInputElement;
+const releaseInput = document.getElementById('game-release-year-input') as HTMLInputElement;
+const addGameBtn = document.getElementById('add-game-btn') as HTMLButtonElement;
+const gameList = document.getElementById('game-list') as HTMLUListElement;
 
-// Função para renderizar as tarefas na lista
-function renderTasks(): void {
-    taskList.innerHTML = '';
-    const tasks = taskManager.getTasks();
+// Renderiza a lista de jogos
+function renderGames(): void {
+    if (!gameList) return;
+    gameList.innerHTML = '';
+    const games = gameManager.getGames();
 
-    tasks.forEach(task => {
-        const taskItem = document.createElement('li');
-        taskItem.className = 'task-item';
-        taskItem.textContent = task.title;
+    games.forEach(game => {
+        const item = document.createElement('li');
+        item.className = 'game-item';
 
-        if (task.completed) {
-            taskItem.classList.add('completed');
+        // estrutura com informações e botão de remover
+        item.innerHTML = `
+            <div class="game-left">
+                <div class="game-title">${game.title}</div>
+                <div class="meta">${game.genre} • ${game.platform} • ${game.releaseYear}</div>
+            </div>
+            <button class="delete-btn" title="Remover jogo">Remover</button>
+        `;
+
+        if (game.completed) {
+            item.classList.add('completed');
         }
 
-        // Adiciona evento de clique para marcar como concluída
-        taskItem.addEventListener('click', () => {
-            taskManager.toggleTaskCompletion(task.id);
-            renderTasks();
+        // Clicar no item (exceto no botão remover) alterna o estado de conclusão
+        item.addEventListener('click', () => {
+            gameManager.toggleGameCompletion(game.id);
+            renderGames();
         });
 
-        taskList.appendChild(taskItem);
+        // Botão remover: impede propagação para não alternar completion
+        const delBtn = item.querySelector('.delete-btn') as HTMLButtonElement | null;
+        delBtn?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            gameManager.removeGame(game.id);
+            renderGames();
+        });
+
+        gameList.appendChild(item);
     });
 }
 
-// Função para adicionar uma nova tarefa
-function addNewTask(): void {
-    const taskTitle = taskInput.value.trim();
-    if (taskTitle) {
-        taskManager.addTask(taskTitle);
-        taskInput.value = '';
-        renderTasks();
-    }
+// Adiciona novo jogo
+function addNewGame(): void {
+    if (!titleInput || !genreInput || !platformInput || !releaseInput) return;
+
+    const title = titleInput.value.trim();
+    const genre = genreInput.value.trim();
+    const platform = platformInput.value.trim();
+    const releaseYear = parseInt(releaseInput.value, 10) || new Date().getFullYear();
+
+    if (!title) return;
+
+    gameManager.addGame(title, genre, platform, releaseYear);
+
+    // Limpa inputs e re-renderiza
+    titleInput.value = '';
+    genreInput.value = '';
+    platformInput.value = '';
+    releaseInput.value = '';
+
+    renderGames();
 }
 
-// Adiciona os eventos de escuta
-addTaskBtn.addEventListener('click', addNewTask);
-taskInput.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-        addNewTask();
-    }
-});
+// Eventos
+addGameBtn?.addEventListener('click', addNewGame);
+[titleInput, releaseInput].forEach(el => el?.addEventListener('keypress', (e) => {
+    if ((e as KeyboardEvent).key === 'Enter') addNewGame();
+}));
 
-// Renderização inicial das tarefas
-renderTasks();
+renderGames();

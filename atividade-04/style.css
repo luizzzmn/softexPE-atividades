@@ -1,68 +1,136 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+:root{
+    --bg: #f4f7fb;
+    --card: #ffffff;
+    --accent: #2b7cff;
+    --muted: #6b7280;
+    --success: #16a34a;
+    --danger: #ef4444;
+    --shadow: 0 6px 18px rgba(36, 37, 42, 0.06);
+    font-family: Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-.container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:#111}
+
+.container{
+    max-width:760px;
+    margin:48px auto;
+    background:var(--card);
+    padding:28px;
+    border-radius:12px;
+    box-shadow:var(--shadow);
 }
 
-h1 {
-    text-align: center;
-    color: #333;
+h1{
+    margin:0 0 16px 0;
+    font-size:1.6rem;
+    color:#0f172a;
 }
 
-.input-area {
-    display: flex;
-    margin-bottom: 20px;
+.input-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+    align-items:center;
+    margin-bottom:12px;
 }
 
-#task-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+.input-grid input{
+    padding:10px 12px;
+    border:1px solid #e6e9ef;
+    border-radius:8px;
+    background:transparent;
+    font-size:0.95rem;
 }
 
-#add-task-btn {
-    padding: 10px;
-    border: none;
-    background-color: #28a745;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 10px;
+.input-grid input[type="number"]{
+    max-width:160px;
 }
 
-#add-task-btn:hover {
-    background-color: #218838;
+.input-grid button{
+    grid-column: 1 / -1;
+    padding:10px 14px;
+    border-radius:8px;
+    border:0;
+    background:var(--accent);
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    transition:transform .08s ease, box-shadow .08s ease;
 }
 
-#task-list {
-    list-style: none;
-    padding: 0;
+.input-grid button:hover{ transform: translateY(-1px); box-shadow: 0 6px 18px rgba(43,124,255,0.12); }
+
+.hint{
+    margin:8px 0 18px 0;
+    color:var(--muted);
+    font-size:0.9rem;
 }
 
-.task-item {
-    background: #eee;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+.game-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
 }
 
-.task-item.completed {
+.game-item{
+    padding:12px 14px;
+    border-radius:10px;
+    background:linear-gradient(180deg, rgba(240,243,255,0.6), rgba(255,255,255,0.6));
+    border:1px solid #eef2ff;
+    cursor:pointer;
+    transition: transform .06s ease, box-shadow .06s ease, background .12s ease;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    color:#0b1220;
+    font-size:0.98rem;
+}
+/* left area */
+.game-left { display:flex; flex-direction:column; align-items:flex-start; gap:4px; }
+
+.game-title { font-weight:600; }
+.meta { color:var(--muted); font-size:0.9rem; }
+
+/* botão de remover */
+.delete-btn{
+    background:transparent;
+    border:1px solid rgba(239,68,68,0.12);
+    color:var(--danger);
+    padding:6px 10px;
+    border-radius:8px;
+    font-weight:600;
+    cursor:pointer;
+    transition:background .08s ease, transform .06s ease;
+}
+.delete-btn:hover{ background: rgba(239,68,68,0.06); transform: translateY(-1px); }
+
+
+.game-item:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(11,18,32,0.06);
+}
+
+.game-item .meta{
+    color:var(--muted);
+    font-size:0.9rem;
+    margin-left:8px;
+}
+
+.game-item.completed{
     text-decoration: line-through;
-    color: #888;
+    opacity:0.6;
+    background: linear-gradient(180deg, rgba(235,250,240,0.6), rgba(255,255,255,0.6));
+    border-color: rgba(22,163,74,0.12);
+}
+
+/* Responsive */
+@media (max-width:640px){
+    .container{ margin:20px; padding:18px; }
+    .input-grid{ grid-template-columns: 1fr; }
+    .input-grid input[type="number"]{ max-width:100%; }
 }

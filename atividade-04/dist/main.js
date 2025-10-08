@@ -1,42 +1,68 @@
-import { taskManager } from './TaskManager.js';
-// Elementos do DOM
-const taskInput = document.getElementById('task-input');
-const addTaskBtn = document.getElementById('add-task-btn');
-const taskList = document.getElementById('task-list');
-// Função para renderizar as tarefas na lista
-function renderTasks() {
-    taskList.innerHTML = '';
-    const tasks = taskManager.getTasks();
-    tasks.forEach(task => {
-        const taskItem = document.createElement('li');
-        taskItem.className = 'task-item';
-        taskItem.textContent = task.title;
-        if (task.completed) {
-            taskItem.classList.add('completed');
+import { gameManager } from './GameManager.js';
+// Elementos do DOM (IDs esperados no HTML)
+const titleInput = document.getElementById('game-title-input');
+const genreInput = document.getElementById('game-genre-input');
+const platformInput = document.getElementById('game-platform-input');
+const releaseInput = document.getElementById('game-release-year-input');
+const addGameBtn = document.getElementById('add-game-btn');
+const gameList = document.getElementById('game-list');
+// Renderiza a lista de jogos
+function renderGames() {
+    if (!gameList)
+        return;
+    gameList.innerHTML = '';
+    const games = gameManager.getGames();
+    games.forEach(game => {
+        const item = document.createElement('li');
+        item.className = 'game-item';
+        // estrutura com informações e botão de remover
+        item.innerHTML = `
+            <div class="game-left">
+                <div class="game-title">${game.title}</div>
+                <div class="meta">${game.genre} • ${game.platform} • ${game.releaseYear}</div>
+            </div>
+            <button class="delete-btn" title="Remover jogo">Remover</button>
+        `;
+        if (game.completed) {
+            item.classList.add('completed');
         }
-        // Adiciona evento de clique para marcar como concluída
-        taskItem.addEventListener('click', () => {
-            taskManager.toggleTaskCompletion(task.id);
-            renderTasks();
+        // Clicar no item (exceto no botão remover) alterna o estado de conclusão
+        item.addEventListener('click', () => {
+            gameManager.toggleGameCompletion(game.id);
+            renderGames();
         });
-        taskList.appendChild(taskItem);
+        // Botão remover: impede propagação para não alternar completion
+        const delBtn = item.querySelector('.delete-btn');
+        delBtn === null || delBtn === void 0 ? void 0 : delBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            gameManager.removeGame(game.id);
+            renderGames();
+        });
+        gameList.appendChild(item);
     });
 }
-// Função para adicionar uma nova tarefa
-function addNewTask() {
-    const taskTitle = taskInput.value.trim();
-    if (taskTitle) {
-        taskManager.addTask(taskTitle);
-        taskInput.value = '';
-        renderTasks();
-    }
+// Adiciona novo jogo
+function addNewGame() {
+    if (!titleInput || !genreInput || !platformInput || !releaseInput)
+        return;
+    const title = titleInput.value.trim();
+    const genre = genreInput.value.trim();
+    const platform = platformInput.value.trim();
+    const releaseYear = parseInt(releaseInput.value, 10) || new Date().getFullYear();
+    if (!title)
+        return;
+    gameManager.addGame(title, genre, platform, releaseYear);
+    // Limpa inputs e re-renderiza
+    titleInput.value = '';
+    genreInput.value = '';
+    platformInput.value = '';
+    releaseInput.value = '';
+    renderGames();
 }
-// Adiciona os eventos de escuta
-addTaskBtn.addEventListener('click', addNewTask);
-taskInput.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-        addNewTask();
-    }
-});
-// Renderização inicial das tarefas
-renderTasks();
+// Eventos
+addGameBtn === null || addGameBtn === void 0 ? void 0 : addGameBtn.addEventListener('click', addNewGame);
+[titleInput, releaseInput].forEach(el => el === null || el === void 0 ? void 0 : el.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter')
+        addNewGame();
+}));
+renderGames();

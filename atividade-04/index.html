@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List com TypeScript</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Minha Lista de Jogos</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <div class="container">
-        <h1>Minha Lista de Tarefas</h1>
-        <div class="input-area">
-            <input type="text" id="task-input" placeholder="Adicione uma nova tarefa...">
-            <button id="add-task-btn">Adicionar</button>
+        <h1>Minha Lista de Jogos</h1>
+
+        <div class="input-grid">
+            <input id="game-title-input" type="text" placeholder="Título do jogo" />
+            <input id="game-genre-input" type="text" placeholder="Gênero" />
+            <input id="game-platform-input" type="text" placeholder="Plataforma (ex: PC, PS5)" />
+            <input id="game-release-year-input" type="number" placeholder="Ano de lançamento" min="1970" max="2100" />
+            <button id="add-game-btn" class="primary">Adicionar Jogo</button>
         </div>
-        <ul id="task-list"></ul>
+
+        <p class="hint">Clique em um jogo para marcar como concluído (jogado).</p>
+
+        <ul id="game-list" class="game-list"></ul>
     </div>
+
     <script type="module" src="./dist/main.js"></script>
 </body>
 </html>
